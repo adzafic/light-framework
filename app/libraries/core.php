@@ -21,6 +21,24 @@
             require_once '../app/controllers/'. $this->currentController . '.php';
             // Creamos la instancia
             $this->currentController = new $this->currentController;
+
+            //comprobar por la segunda parte de la url
+            if(isset($url[1])){
+                //comprobar si el methodo existe en el controlador
+                if(method_exists($this->currentController,$url[1])){
+                    $this->currentMethod = $url[1];
+                }
+                unset($url[1]);
+            }
+
+            // get params
+
+            $this->params = $url ? array_values($url) : [];
+
+            // ejecutar la funcion callback con una array como parametro
+            call_user_func_array([$this->currentController,$this->currentMethod],$this->params);
+
+
         }
 
         public function getUrl(){
