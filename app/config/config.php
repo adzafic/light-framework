@@ -1,14 +1,14 @@
 <?php
     //db params
-    define('DB_HOST','172.17.0.3');
-    define('DB_USER','root');
-    define('DB_PASS','123456');
-    define('DB_NAME','test_framework');
+    define('DB_HOST','_TU_HOST_');
+    define('DB_USER','_TU_USUARIO_');
+    define('DB_PASS','_TU_CONTRASEÑA_');
+    define('DB_NAME','_TU_NOMBRE_BASEDEDATOS_');
 
     //app root
     define('APPROOT',dirname(dirname(__FILE__)));
     //URL root
-    define('URLROOT','http://localhost');
+    define('URLROOT','_TU_URL_');
     // SITE NAME
-    define('SITENAME','light-framework');
+    define('SITENAME','_PAGINA_NOMBRE_');
 ?>
