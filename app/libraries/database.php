@@ -31,6 +31,53 @@
             }
         }
 
+        //preaparar la query
+        public function query($sql){
+            $this->stmt = $this->dbh->prepare($sql);
+        }
+        
+        //asignar las variables a la query
+        public function bind($param, $value, $type = null){
+            if(is_null($type)){
+                switch (true) {
+                    case is_int($value):
+                        $type = PDO::PARAM_INT;
+                        break;
+                    case is_bool($value):
+                        $type = PDO::PARAM_BOL;
+                        break;
+                    case is_null($value):
+                        $type = PDO::PARAM_NULL;
+                        break;
+                    default:
+                        $type = PDO::PARAM_STR;
+                }
+            }
+            $this->stmt->bindValue($param, $value, $type);
+        }
+
+        //ejecutar la query
+        public function execute(){
+            return $this->stmt->execute();
+        }
+
+        //devolver resultado como array de objectos
+        public function resultSet(){
+            $this->execute();
+            return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        //devolver un registro como objeto
+        public function single(){
+            $this->execute();
+            return $this->stmt->fetch(PDO::FETCH_OBJ);
+        }
+
+        //devolver numero de registros
+        public function rowCount(){
+            return $this->stmt->rowCount();
+        }
+
         
     }
 ?>

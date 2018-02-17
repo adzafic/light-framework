@@ -5,5 +5,11 @@
         public function __construct(){
             $this->db = new Database;   
         }
+
+        public function getPosts(){
+            $sql = "SELECT * FROM posts";
+            $this->db->query($sql);
+            return $this->db->resultSet();
+        }
     }
 ?>
